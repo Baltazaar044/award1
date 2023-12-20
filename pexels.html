@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masonry Layout with Pexels API</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="masonry-container" id="masonryContainer"></div>
+
+<script src="script.js"></script>
+<!-- ... (your existing HTML) -->
+
+<script>
+    const apiKey = 'orKmEbWZsY4lf6JpsJkaBTwF798kjS7O41bZ96ScXX9l3iNPz62KMsC8';
+    const apiUrl = 'https://api.pexels.com/v1/curated?per_page=50';
+  
+    fetch(apiUrl, {
+      headers: {
+        Authorization: apiKey
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      const masonryContainer = document.getElementById('masonryContainer');
+  
+      data.photos.forEach(photo => {
+        const masonryItem = document.createElement('div');
+        masonryItem.classList.add('masonry-item');
+  
+        const img = document.createElement('img');
+        img.src = photo.src.large;
+        img.alt = photo.photographer;
+  
+        // Add click event listener to each image
+        img.addEventListener('click', () => openFullscreen(photo.src.large, photo.photographer));
+  
+        const itemContent = document.createElement('div');
+        itemContent.classList.add('item-content');
+  
+        masonryItem.appendChild(img);
+        masonryItem.appendChild(itemContent);
+        masonryContainer.appendChild(masonryItem);
+      });
+    })
+    .catch(error => console.error('Error fetching data from Pexels API:', error));
+  
+    function openFullscreen(imageUrl, photographer) {
+      const fullscreenImage = document.getElementById('fullscreenImage');
+      fullscreenImage.src = imageUrl;
+  
+      const downloadButton = document.getElementById('downloadButton');
+      downloadButton.href = imageUrl;
+      downloadButton.download = `${photographer}_image.jpg`;
+  
+      const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+      fullscreenOverlay.style.display = 'flex';
+    }
+  
+    function closeFullscreen() {
+      const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+      fullscreenOverlay.style.display = 'none';
+    }
+
+
+    
+  function openFullscreen(imageUrl, photographer) {
+    const fullscreenImage = document.getElementById('fullscreenImage');
+    fullscreenImage.src = imageUrl;
+
+    const downloadButton = document.getElementById('downloadButton');
+    downloadButton.href = imageUrl;
+    downloadButton.download = `${photographer}_image.jpg`;
+
+    const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+    fullscreenOverlay.style.display = 'flex';
+  }
+
+  // Additional function for the share button (customize this based on your sharing mechanism)
+  function shareImage() {
+    // Add your sharing logic here
+    alert('Share functionality will be implemented here.');
+  }
+
+  const shareButton = document.getElementById('shareButton');
+  shareButton.addEventListener('click', shareImage);
+
+  
+  </script>
+  
+  <!-- Fullscreen overlay container -->
+<div id="fullscreenOverlay" class="fullscreen-overlay">
+    <div class="fullscreen-content">
+      <img id="fullscreenImage" class="fullscreen-image" src="" alt="Fullscreen Image">
+      <div class="button-container">
+        <a id="downloadButton" class="download-button" href="" download="downloaded_image.jpg">Download</a>
+        <button id="shareButton" class="share-button">Share</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

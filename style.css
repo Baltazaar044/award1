@@ -1,0 +1,111 @@
+
+body {
+    background-image: url('/Assets/Plummeting.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+ 
+
+  font-family: 'Creepster', cursive; /* Change the font to a spooky one */
+  margin: 20vh;
+  padding: 0;
+  background-color: #1a1a1a; /* Dark background color for a spooky feel */
+  color: #d02323; /* Set text color to white */
+}
+
+.masonry-container {
+  column-count: 1;
+  column-gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 16px;
+  background-color: #2b2b2b; /* Darker background for the horror theme */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Increase shadow intensity */
+  transition: transform 0.3s ease;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.masonry-item:hover {
+  transform: scale(1.1); /* Slightly increase scale on hover for a spooky effect */
+}
+
+@media (min-width: 600px) {
+  .masonry-container {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 900px) {
+  .masonry-container {
+    column-count: 5;
+  }
+}
+.fullscreen-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.fullscreen-content {
+  text-align: center;
+}
+
+.fullscreen-image {
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.button-container {
+  margin-top: 15px;
+}
+
+.download-button,
+.share-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-button {
+  background-color: #3498db;
+}
+
+.download-button:hover {
+  background-color: #2980b9;
+}
+
+.share-button {
+  background-color: #27ae60;
+  margin-left: 10px;
+}
+
+.share-button:hover {
+  background-color: #219653;
+}
